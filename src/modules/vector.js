@@ -16,6 +16,6 @@ export default class Vector {
      * @returns {number}
      */
     calculateDistance(x, y) {
-        return Math.sqrt(Math.abs(y - this.y) ^ 2 + Math.abs(x - this.x) ^ 2);
+        return Math.sqrt(Math.abs(this.y - y) ** 2 + Math.abs(this.x - x) ** 2);
     }
 }
