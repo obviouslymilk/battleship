@@ -3,19 +3,17 @@ import Vector from "./vector";
 export default class Ship {
     
     #name
-    #origin
-    #hitpoints
+    #maxHits
+    #currentHits
 
     /**
-     * 
      * @param {string} name Will be used in game messages.
-     * @param {Vector} origin Origin of the ship on a gameboard.
-     * @param {number} length Ship length. Minimum: 1, Maximum: 5.
+     * @param {number} health How many hits needed to sunk this ship. It's also the length of a ship.
      */
-    constructor(name = "ship", origin = null, length = 1) {
+    constructor(name = "ship", health) {
         this.#name = name.toLowerCase();
-        this.#origin = origin;
-        this.#hitpoints = Array(Math.min(Math.max(length, 1), 5)).fill(false); // This Math mess just clamp length between 1 and 5.
+        this.#currentHits = 0;
+        this.#maxHits = health;
     }
 
     /**
@@ -25,22 +23,16 @@ export default class Ship {
         return this.#name;
     }
 
-    /**
-     * @returns {Vector}
-     */
-    getOrigin() {
-        return this.#origin;
+    getLength() {
+        return this.#maxHits;
     }
 
     /**
      * Hit a ship in one of its parts.
      * @param {number} position Where ship will get hit. Starts from 0 and can't be bigger than ship length - 1.
      */
-    hit(position) {
-        if (position < 0 || position >= this.#hitpoints.length)
-            return;
-        
-        this.#hitpoints[position] = true;
+    hit() {        
+        this.#currentHits += 1;
     }
 
     /**
@@ -48,6 +40,6 @@ export default class Ship {
      * @returns {boolean}
      */
     isSunk() {
-        return this.#hitpoints.every(point => point === true);
+        return this.#currentHits === this.#maxHits;
     }
 }
