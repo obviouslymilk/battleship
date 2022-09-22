@@ -4,17 +4,8 @@ export default class Gameboard {
     
     static #GRID_SIZE = 8;
 
-    /**
-     * 
-     */
     #owner
-    /**
-     * @type {Ship[]}
-     */
     #ships
-    /**
-     * @type {Object[][]}
-     */
     #grid
 
     // add jsdoc for player class
