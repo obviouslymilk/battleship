@@ -31,7 +31,10 @@ export default class Ship {
      * Hit a ship in one of its parts.
      * @param {number} position Where ship will get hit. Starts from 0 and can't be bigger than ship length - 1.
      */
-    hit() {        
+    hit() {       
+        if (this.isSunk()) // He is already dead!!!
+            return;
+        
         this.#currentHits += 1;
     }
 
