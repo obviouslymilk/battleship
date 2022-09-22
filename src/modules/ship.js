@@ -1,5 +1,3 @@
-import Vector from "./vector";
-
 export default class Ship {
     
     #name
@@ -10,7 +8,7 @@ export default class Ship {
      * @param {string} name Will be used in game messages.
      * @param {number} health How many hits needed to sunk this ship. It's also the length of a ship.
      */
-    constructor(name = "ship", health) {
+    constructor(name, health) {
         this.#name = name.toLowerCase();
         this.#currentHits = 0;
         this.#maxHits = health;

@@ -1,5 +1,3 @@
-import Ship from './ship';
-
 export default class Gameboard {
     
     static #GRID_SIZE = 8;
