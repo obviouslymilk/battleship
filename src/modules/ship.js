@@ -1,5 +1,4 @@
-export default class Ship {
-    
+export default class Ship {    
     #name
     #maxHits
     #currentHits
@@ -14,9 +13,6 @@ export default class Ship {
         this.#maxHits = Math.min(Math.max(health, 1), 5); // This Math mess just clamp health to 1..5
     }
 
-    /**
-     * @returns {string}
-     */
     getName() {
         return this.#name;
     }
