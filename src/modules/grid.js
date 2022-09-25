@@ -10,10 +10,21 @@ export default class Grid {
         }
     }
 
+    /**
+     * @param {number} x 
+     * @param {number} y 
+     * @param {any} data 
+     */
     setData(x, y, data) {
-        return this.#array[x][y] = data;
+        this.#array[x][y] = data;
     }
 
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     * @returns {any} Data in a given cell.
+     */
     getData(x, y) {
         return this.#array[x][y]
     }
