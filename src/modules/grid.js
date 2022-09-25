@@ -10,6 +10,10 @@ export default class Grid {
         }
     }
 
+    setData(x, y, data) {
+        return this.#array[x][y] = data;
+    }
+
     getData(x, y) {
         return this.#array[x][y]
     }
