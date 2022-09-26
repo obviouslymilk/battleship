@@ -19,17 +19,15 @@ export default class Grid {
         this.#array[x][y].marked = true;
     }
 
+    getMarked(x, y) {
+        return this.#array[x][y].marked;
+    }
+
     addShip(ship, x, y) {
         this.#array[x][y].ship = ship;
     }
 
-    /**
-     * 
-     * @param {number} x 
-     * @param {number} y 
-     * @returns {any} Data in a given cell.
-     */
-    getData(x, y) {
-        return this.#array[x][y];
+    getShip(x, y) {
+        return this.#array[x][y].ship;
     }
 }
