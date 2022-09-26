@@ -34,14 +34,23 @@ export default class Gameboard {
         
         this.#ships.push(ship);
         for (let i = 0; i < ship.getLength(); i++)
-            this.#grid.setData(rotate ? x : x + i, rotate ? y + i : y, { ship: ship, marked: false });
+            this.#grid.addShip(ship, rotate ? x : x + i, rotate ? y + i : y);
+    }
+
+    /**
+     * Hit a spot on a grid.
+     * @param {number} x Vertical position of a hit.
+     * @param {number} y Horizontal position of a hit.
+     */
+    recieveAttack(x, y) {
+
     }
 
     #getShipInCell(x, y) {
-        return this.#grid.getData(x, y).ship;
+        return this.#grid.getShip(x, y);
     }
 
     #isCellMarked(x, y) {
-        return this.#grid.getData(x, y).marked;
+        return this.#grid.getMarked(x, y);
     }
 }
