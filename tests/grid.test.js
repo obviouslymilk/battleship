@@ -4,8 +4,8 @@ describe('Feature: Grid', () => {
     describe('When create Grid(8, 0) and add 1 to [3;3]', () => {
         const grid = new Grid(8, 0);
         grid.setMarked(3, 3)
-        test('Then getData(3, 3) should return 1', () => {
-            expect(grid.getData(3, 3).marked).toBe(true);
+        test('Then getMarked(3, 3) should return true', () => {
+            expect(grid.getMarked(3, 3)).toBe(true);
         })
 
         test('Then getData(0, 0) should return {ship: null, marked: null}', () => {
