@@ -27,4 +27,25 @@ describe('Feature: Gameboard', () => {
         const fakeship = { fakeProperty: false, health: true }
         expect(() => { g.addShip(fakeship, 3, 3, false) }).toThrow();
     })
+
+    describe('When adding one Ship(1) at (2, 5) and hitting it', () => {
+        test('Then ship should be sunk', () => {
+            const g = new Gameboard();
+            const ship = new Ship('small', 1);
+            g.addShip(ship, 2, 5, false);
+            g.recieveAttack(2, 5);
+            expect(ship.isSunk()).toBe(true);
+        })
+    })
+
+    describe('When adding one Ship(2) at (1, 1) and hitting it two times at one space', () => {
+        test('Then ship.isSunk() should return fasle', () => {
+            const g = new Gameboard();
+            const ship = new Ship('ship', 2);
+            g.addShip(ship, 1, 1, false);
+            g.recieveAttack(1, 1);
+            g.recieveAttack(1, 1);
+            expect(ship.isSunk()).toBe(false);
+        })
+    })
 })
