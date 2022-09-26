@@ -11,5 +11,9 @@ describe('Feature: Grid', () => {
         test('Then getData(0, 0) should return 0', () => {
             expect(grid.getData(0, 0)).toBe(0);
         })
+
+        test('Then setData(8, 8) should throw', () => {
+            expect(() => { grid.setData(8, 8, 1) }).toThrow();
+        })
     })
 })
