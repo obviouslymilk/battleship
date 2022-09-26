@@ -43,7 +43,8 @@ export default class Gameboard {
      * @param {number} y Horizontal position of a hit.
      */
     recieveAttack(x, y) {
-
+        if (this.#isCellMarked(x, y))
+            return;
     }
 
     #getShipInCell(x, y) {
