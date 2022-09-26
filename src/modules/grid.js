@@ -1,12 +1,12 @@
 export default class Grid {
     #array = [];
 
-    constructor(size = 8, defaultElement = null) {
+    constructor(size = 8) {
         this.#array.length = 0;
         for (let i = 0; i < size; i++) {
             this.#array.push([]);
             for (let j = 0; j < size; j++)
-                this.#array[i].push(defaultElement);
+                this.#array[i].push({ship : null, marked : null});
         }
     }
 
@@ -15,8 +15,12 @@ export default class Grid {
      * @param {number} y 
      * @param {any} data 
      */
-    setData(x, y, data) {
-        this.#array[x][y] = data;
+    setMarked(x, y) {
+        this.#array[x][y].marked = true;
+    }
+
+    addShip(ship, x, y) {
+        this.#array[x][y].ship = ship;
     }
 
     /**
@@ -26,6 +30,6 @@ export default class Grid {
      * @returns {any} Data in a given cell.
      */
     getData(x, y) {
-        return this.#array[x][y]
+        return this.#array[x][y];
     }
 }
