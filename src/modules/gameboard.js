@@ -12,6 +12,13 @@ export default class Gameboard {
         this.#grid = new Grid(Gameboard.#GRID_SIZE, { ship: null, marked: false });
     }
 
+    /**
+     * Add a Ship with origin on a current position.
+     * @param {Ship} ship Ship to add.
+     * @param {number} x Vertical position of a ship.
+     * @param {number} y Horizontal position of a ship.
+     * @param {boolean} rotate Is ship rotated (placed horizontal) or not (place vertical).
+     */
     addShip(ship, x, y, rotate) {
         if (!(ship instanceof Ship))
             throw new Error(`addShip() expected instance of Ship, got ${ship.constructor.name}`);
@@ -20,22 +27,21 @@ export default class Gameboard {
         
         let isOccupied = false;
         for (let i = 0; i < ship.getLength(); i++)
-            if (this.#grid.getData(rotate ? x : x + i, rotate ? y + i : y).ship)
+            if (this.#getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
                 isOccupied = true;
         if (isOccupied)
             throw new Error('addShip() cannot add a ship on occupied space(s).');
         
         this.#ships.push(ship);
-
         for (let i = 0; i < ship.getLength(); i++)
             this.#grid.setData(rotate ? x : x + i, rotate ? y + i : y, { ship: ship, marked: false });
     }
 
-    getShipInCell(x, y) {
+    #getShipInCell(x, y) {
         return this.#grid.getData(x, y).ship;
     }
 
-    isCellMarked(x, y) {
+    #isCellMarked(x, y) {
         return this.#grid.getData(x, y).marked;
     }
 }
