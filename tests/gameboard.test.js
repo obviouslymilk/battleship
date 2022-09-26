@@ -48,4 +48,18 @@ describe('Feature: Gameboard', () => {
             expect(ship.isSunk()).toBe(false);
         })
     })
+
+    describe('When adding two Ships (1 and 1) at (1,1) and (7,7) and sunk them', () => {
+        test('Then isAllSunk() should return true', () => {
+            const g = new Gameboard();
+            const ship = new Ship('ship1', 1);
+            const ship2 = new Ship('ship2', 1);
+            g.addShip(ship, 1, 1, true);
+            g.addShip(ship2, 7, 7, true);
+            g.recieveAttack(1, 1);
+            g.recieveAttack(7, 7);
+
+            expect(g.isAllSunk()).toBe(true);
+        })
+    })
 })

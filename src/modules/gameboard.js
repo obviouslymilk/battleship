@@ -60,4 +60,8 @@ export default class Gameboard {
     #isCellMarked(x, y) {
         return this.#grid.getMarked(x, y);
     }
+
+    isAllSunk() {
+        return this.#ships.every(s => s.isSunk() === true);
+    }
 }
