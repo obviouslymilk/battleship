@@ -45,6 +45,12 @@ export default class Gameboard {
     recieveAttack(x, y) {
         if (this.#isCellMarked(x, y))
             return;
+
+        this.#grid.setMarked(x, y);
+        
+        const ship = this.#getShipInCell(x, y);
+        if (ship)
+            ship.hit();
     }
 
     #getShipInCell(x, y) {
