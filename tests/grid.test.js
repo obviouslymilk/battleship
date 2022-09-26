@@ -7,11 +7,7 @@ describe('Feature: Grid', () => {
         test('Then getMarked(3, 3) should return true', () => {
             expect(grid.getMarked(3, 3)).toBe(true);
         })
-
-        test('Then getData(0, 0) should return {ship: null, marked: null}', () => {
-            expect(grid.getData(0, 0)).toStrictEqual({ship: null, marked: null});
-        })
-
+        
         test('Then setData(8, 8, 1) should throw', () => {
             expect(() => { grid.setData(8, 8, 1) }).toThrow();
         })
