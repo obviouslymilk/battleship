@@ -1,6 +1,5 @@
 import Grid from './grid.js';
 import Ship from './ship.js';
-import Player from './player.js';
 
 export default class Gameboard {
 
