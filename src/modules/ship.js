@@ -13,10 +13,18 @@ export default class Ship {
         this.#maxHits = Math.min(Math.max(health, 1), 5); // This Math mess just clamp health to 1..5
     }
 
+    /**
+     * Returns ship name.
+     * @returns {string}
+     */
     getName() {
         return this.#name;
     }
 
+    /**
+     * Returns length of the ship.
+     * @returns {number}
+     */
     getLength() {
         return this.#maxHits;
     }

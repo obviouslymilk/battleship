@@ -1,5 +1,6 @@
 import Grid from './grid';
 import Ship from './ship';
+import Player from './player';
 
 export default class Gameboard {
 
@@ -38,10 +39,19 @@ export default class Gameboard {
             this.#grid.addShip(ship, rotate ? x : x + i, rotate ? y + i : y);
     }
 
+    /**
+     * Assign a player as an owner of this gameboard.
+     * @param {Player} player 
+     */
     assignOwner(player) {
         this.#owner = player;
     }
 
+    /**
+     * Returns true if given player is the owner and false if they are not.
+     * @param {Player} player Player to check.
+     * @returns {boolean} Is this player an owner of the gameboard
+     */
     isOwner(player) {
         return this.#owner === player;
     }
@@ -66,6 +76,10 @@ export default class Gameboard {
         return this.#grid.getShip(x, y);
     }
 
+    /**
+     * Returns gameboard grid.
+     * @returns {Array.<Array>}
+     */
     getGrid() {
         return this.#grid;
     }
@@ -74,6 +88,10 @@ export default class Gameboard {
         return this.#grid.getMarked(x, y);
     }
 
+    /**
+     * Returns true if all ships of the gameboard are sunk.
+     * @returns {boolean}
+     */
     isAllSunk() {
         return this.#ships.every(s => s.isSunk() === true);
     }
