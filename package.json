@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Battleship game made with JavaScript",
   "main": ".src/index.js",
+  "type": "module",
   "directories": {
     "test": "tests"
   },

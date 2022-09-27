@@ -1,6 +1,6 @@
-import Player from './player';
-import Gameboard from './gameboard';
-import Ship from './ship';
+import Player from './player.js';
+import Gameboard from './gameboard.js';
+import Ship from './ship.js';
 
 export const players = {
     player: null,
