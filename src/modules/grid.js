@@ -22,29 +22,26 @@ export default class Grid {
     }
 
     /**
-     * Returns true if spot is marked and false if it is not.
-     * @param {number} x Vertical position of marked spot.
-     * @param {number} y Horizontal position of marked spot.
-     * @returns {boolean} is spot marked or not.
+     * @param {number} x
+     * @param {number} y
+     * @returns {boolean}
      */
     getMarked(x, y) {
         return this.#array[x][y].marked;
     }
 
     /**
-     * Add a ship.
-     * @param {Ship} ship Ship to add.
-     * @param {number} x Vertical position.
-     * @param {number} y Horizontal position
+     * @param {Ship} ship
+     * @param {number} x
+     * @param {number} y
      */
     addShip(ship, x, y) {
         this.#array[x][y].ship = ship;
     }
 
     /**
-     * Returns a ship on given coordinates.
-     * @param {number} x Vertical position
-     * @param {number} y Horizontal position
+     * @param {number} x
+     * @param {number} y
      * @returns {Ship} 
      */
     getShip(x, y) {

@@ -14,10 +14,10 @@ export default class Gameboard {
     }
 
     /**
-     * Add a Ship with origin on a current position.
+     * Add a Ship with an origin on a given position.
      * @param {Ship} ship Ship to add.
-     * @param {number} x Vertical position of a ship.
-     * @param {number} y Horizontal position of a ship.
+     * @param {number} x Horizontal position.
+     * @param {number} y Vertical position.
      * @param {boolean} rotate Is ship rotated (placed horizontal) or not (place vertical).
      */
     addShip(ship, x, y, rotate = false) {
@@ -47,9 +47,9 @@ export default class Gameboard {
     }
 
     /**
-     * Returns true if given player is the owner and false if they are not.
+     * Returns true if given player is the owner of the gameboard.
      * @param {Player} player Player to check.
-     * @returns {boolean} Is this player an owner of the gameboard
+     * @returns {boolean} Is this player the owner of the gameboard.
      */
     isOwner(player) {
         return this.#owner === player;
@@ -57,8 +57,8 @@ export default class Gameboard {
 
     /**
      * Hit a spot on a grid.
-     * @param {number} x Vertical position of a hit.
-     * @param {number} y Horizontal position of a hit.
+     * @param {number} x Horizontal position.
+     * @param {number} y Vertical position.
      */
     recieveAttack(x, y) {
         if (this.isCellMarked(x, y))
@@ -71,6 +71,12 @@ export default class Gameboard {
             ship.hit();
     }
 
+    /**
+     * Returns a ship on given coordinates.
+     * @param {number} x Horizontal position.
+     * @param {number} y Vertical position.
+     * @returns {Ship} 
+     */
     getShipInCell(x, y) {
         return this.#grid.getShip(x, y);
     }
@@ -83,6 +89,12 @@ export default class Gameboard {
         return this.#grid;
     }
 
+    /**
+     * Returns true if selected spot is marked.
+     * @param {number} x Horizontal position.
+     * @param {number} y Vertical position
+     * @returns {boolean}
+     */
     isCellMarked(x, y) {
         return this.#grid.getMarked(x, y);
     }

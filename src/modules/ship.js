@@ -5,7 +5,7 @@ export default class Ship {
 
     /**
      * @param {string} name Will be used in game messages.
-     * @param {number} health Can be in range of 1 to 5. How many hits needed to sunk this ship. It's also the length of a ship.
+     * @param {number} health Can be in range of 1 to 5. It's also length of the ship.
      */
     constructor(name, health) {
         this.#name = name.toLowerCase();
@@ -22,7 +22,7 @@ export default class Ship {
     }
 
     /**
-     * Returns length of the ship.
+     * Returns the length of the ship.
      * @returns {number}
      */
     getLength() {
@@ -30,18 +30,17 @@ export default class Ship {
     }
 
     /**
-     * Hit a ship in one of its parts.
-     * @param {number} position Where ship will get hit. Starts from 0 and can't be bigger than ship length - 1.
+     * Hits the ship.
      */
     hit() {       
-        if (this.isSunk()) // He is already dead!!!
+        if (this.isSunk())
             return;
         
         this.#currentHits += 1;
     }
 
     /**
-     * Returns true if ship is sunk and false if it's not.
+     * Is the ship sunk?
      * @returns {boolean}
      */
     isSunk() {
