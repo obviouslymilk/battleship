@@ -2,7 +2,7 @@ export default class Player {
 
     #name
 
-    constructor(name, isAi = false) {
+    constructor(name) {
         this.#name = name;
     }
 }

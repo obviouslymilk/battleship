@@ -21,7 +21,7 @@ export default class Gameboard {
      * @param {number} y Horizontal position of a ship.
      * @param {boolean} rotate Is ship rotated (placed horizontal) or not (place vertical).
      */
-    addShip(ship, x, y, rotate) {
+    addShip(ship, x, y, rotate = false) {
         if (!(ship instanceof Ship))
             throw new Error(`addShip() expected instance of Ship, got ${ship.constructor.name}`);
         if ( x > Gameboard.#GRID_SIZE - (rotate ? 1 : ship.getLength()) || y > Gameboard.#GRID_SIZE - (rotate ? ship.getLength() : 1) || x < 0 || y < 0)
@@ -29,7 +29,7 @@ export default class Gameboard {
         
         let isOccupied = false;
         for (let i = 0; i < ship.getLength(); i++)
-            if (this.#getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
+            if (this.getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
                 isOccupied = true;
         if (isOccupied)
             throw new Error('addShip() cannot add a ship on occupied space(s).');
@@ -62,17 +62,17 @@ export default class Gameboard {
      * @param {number} y Horizontal position of a hit.
      */
     recieveAttack(x, y) {
-        if (this.#isCellMarked(x, y))
+        if (this.isCellMarked(x, y))
             return;
 
         this.#grid.setMarked(x, y);
         
-        const ship = this.#getShipInCell(x, y);
+        const ship = this.getShipInCell(x, y);
         if (ship)
             ship.hit();
     }
 
-    #getShipInCell(x, y) {
+    getShipInCell(x, y) {
         return this.#grid.getShip(x, y);
     }
 
@@ -84,7 +84,7 @@ export default class Gameboard {
         return this.#grid;
     }
 
-    #isCellMarked(x, y) {
+    isCellMarked(x, y) {
         return this.#grid.getMarked(x, y);
     }
 
