@@ -1,12 +1,4 @@
-export default class Game {
-
-    #players = {
-        player: null,
-        ai: null
-    }
-
-    constructor() {
-        
-    }
-
+players = {
+    player: null,
+    ai: null
 }
