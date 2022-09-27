@@ -5,6 +5,7 @@ export default class Gameboard {
 
     static #GRID_SIZE = 8;
 
+    #owner;
     #ships = [];
     #grid;
 
@@ -37,6 +38,14 @@ export default class Gameboard {
             this.#grid.addShip(ship, rotate ? x : x + i, rotate ? y + i : y);
     }
 
+    assignOwner(player) {
+        this.#owner = player;
+    }
+
+    isOwner(player) {
+        return this.#owner === player;
+    }
+
     /**
      * Hit a spot on a grid.
      * @param {number} x Vertical position of a hit.
@@ -55,6 +64,10 @@ export default class Gameboard {
 
     #getShipInCell(x, y) {
         return this.#grid.getShip(x, y);
+    }
+
+    getGrid() {
+        return this.#grid;
     }
 
     #isCellMarked(x, y) {
