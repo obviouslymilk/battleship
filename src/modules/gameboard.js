@@ -40,7 +40,7 @@ export default class Gameboard {
 
     /**
      * Assign a player as an owner of this gameboard.
-     * @param {Player} player 
+     * @param {string} player 
      */
     assignOwner(player) {
         this.#owner = player;
@@ -48,7 +48,7 @@ export default class Gameboard {
 
     /**
      * Returns true if given player is the owner of the gameboard.
-     * @param {Player} player Player to check.
+     * @param {string} player Player to check.
      * @returns {boolean} Is this player the owner of the gameboard.
      */
     isOwner(player) {
