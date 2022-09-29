@@ -47,4 +47,18 @@ export default class Grid {
     getShip(x, y) {
         return this.#array[x][y].ship;
     }
+
+    print(hide = false) {
+        const arrayToPrint = this.#array.map((row) => row.map((cell) => {
+            if (cell.ship && cell.marked)
+                return '🔥'
+            if (cell.ship && !cell.marked && !hide)
+                return '⬜️'
+            if (!cell.ship && cell.marked) 
+                return '💦'
+            
+            return '🌊'
+        }).join(''))
+        console.log(arrayToPrint);
+    }
 }

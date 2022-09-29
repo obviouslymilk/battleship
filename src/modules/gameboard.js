@@ -5,9 +5,8 @@ export default class Gameboard {
 
     static #GRID_SIZE = 8;
 
-    #owner;
     #ships = [];
-    #grid;
+    #grid = [];
 
     constructor() {
         this.#grid = new Grid(Gameboard.#GRID_SIZE, { ship: null, marked: false });
@@ -36,23 +35,6 @@ export default class Gameboard {
         this.#ships.push(ship);
         for (let i = 0; i < ship.getLength(); i++)
             this.#grid.addShip(ship, rotate ? x : x + i, rotate ? y + i : y);
-    }
-
-    /**
-     * Assign a player as an owner of this gameboard.
-     * @param {string} player 
-     */
-    assignOwner(player) {
-        this.#owner = player;
-    }
-
-    /**
-     * Returns true if given player is the owner of the gameboard.
-     * @param {string} player Player to check.
-     * @returns {boolean} Is this player the owner of the gameboard.
-     */
-    isOwner(player) {
-        return this.#owner === player;
     }
 
     /**
@@ -105,5 +87,9 @@ export default class Gameboard {
      */
     isAllSunk() {
         return this.#ships.every(s => s.isSunk() === true);
+    }
+
+    print(hide = false) {
+        this.#grid.print(hide);
     }
 }
