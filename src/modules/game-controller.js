@@ -15,9 +15,8 @@ export default class GameController {
     #currentPlayer = this.#players[0];
 
     constructor() {
-        // add ships to gameboards
-        this.#players[1].gameboard.addShip(new Ship('dude', 2), 1, 2);
-        this.#players[1].gameboard.addShip(new Ship('dude', 2), 4, 1, true);
+        // add ships to player
+        // add ships to ai
     }
 
     #switchPlayer() {
@@ -36,6 +35,8 @@ export default class GameController {
 
     playRound(x = 0, y = 0) {
         this.#players[1].gameboard.recieveAttack(x, y);
+        this.#printPlayer(this.#players[0], true);
         this.#printPlayer(this.#players[1], true);
+        this.#switchPlayer();
     }
 }
