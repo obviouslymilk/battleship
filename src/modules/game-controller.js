@@ -26,7 +26,6 @@ export default class GameController {
     #printPlayer(player, hide = false) {
         console.log(`${player.name.toUpperCase()}'s BOARD.`);
         player.gameboard.print(hide);
-        console.log('===========================')
     }
 
     getCurrentPlayer() {
@@ -34,9 +33,12 @@ export default class GameController {
     }
 
     playRound(x = 0, y = 0) {
+        this.#switchPlayer(); // Need to make it at a beginning to preven clicking spam.
         this.#players[1].gameboard.recieveAttack(x, y);
         this.#printPlayer(this.#players[0], true);
         this.#printPlayer(this.#players[1], true);
-        this.#switchPlayer();
+        // make ai move
+        // check win conditions
+        // switch player again
     }
 }
