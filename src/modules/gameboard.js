@@ -89,6 +89,10 @@ export default class Gameboard {
         return this.#ships.every(s => s.isSunk() === true);
     }
 
+    /**
+     * Print the gameboard in the console.
+     * @param {boolean} hide Should ships be hidden or not.
+     */
     print(hide = false) {
         this.#grid.print(hide);
     }

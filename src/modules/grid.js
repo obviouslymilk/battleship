@@ -48,6 +48,10 @@ export default class Grid {
         return this.#array[x][y].ship;
     }
 
+    /**
+     * Print the grid in the console.
+     * @param {boolean} hide Should ships be hidden or not.
+     */
     print(hide = false) {
         const arrayToPrint = this.#array.map((row) => row.map((cell) => {
             if (cell.ship && cell.marked)
