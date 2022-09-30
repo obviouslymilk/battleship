@@ -94,6 +94,7 @@ export default class Gameboard {
      * @param {boolean} hide Should ships be hidden or not.
      */
     print(hide = false) {
+        console.log('Is all ship sunk: ' + this.isAllSunk());
         this.#grid.print(hide);
     }
 }
