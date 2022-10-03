@@ -62,4 +62,13 @@ describe('Feature: Gameboard', () => {
             expect(g.isAllSunk()).toBe(true);
         })
     })
+
+    describe('Whhen adding a Ship(1) at (0, 0)', () => {
+        test('Then isOccupied(0, 0) should be true', () => {
+            const g = new Gameboard();
+            const ship = new Ship('ship1', 1);
+            g.addShip(ship, 0, 0, true);
+            expect(g.isOccupied(0, 0, 1, false)).toBe(true);
+        })
+    })
 })

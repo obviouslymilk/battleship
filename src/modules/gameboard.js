@@ -25,11 +25,7 @@ export default class Gameboard {
         if ( x > Gameboard.#GRID_SIZE - (rotate ? 1 : ship.getLength()) || y > Gameboard.#GRID_SIZE - (rotate ? ship.getLength() : 1) || x < 0 || y < 0)
             throw new Error('addShip() coordinates are out of bounds.');
         
-        let isOccupied = false;
-        for (let i = 0; i < ship.getLength(); i++)
-            if (this.getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
-                isOccupied = true;
-        if (isOccupied)
+        if (this.isOccupied(x, y, ship.getLength(), rotate))
             throw new Error('addShip() cannot add a ship on occupied space(s).');
         
         this.#ships.push(ship);
@@ -79,6 +75,18 @@ export default class Gameboard {
      */
     isCellMarked(x, y) {
         return this.#grid.getMarked(x, y);
+    }
+
+    /**
+     * Is current cell or a row occupied by other ships.
+     * @returns {boolean}
+     */
+    isOccupied(x, y, length, rotate) {
+        let isOccupied = false;
+        for (let i = 0; i < length; i++)
+            if (this.getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
+                isOccupied = true;
+        return isOccupied;
     }
 
     /**
