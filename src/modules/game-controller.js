@@ -56,6 +56,11 @@ export default class GameController {
         return this.#currentPlayer;
     }
 
+    /**
+     * Play full round of the game: player's hit and AI's hit.
+     * @param {number} x Vertical position of player's hit.
+     * @param {number} y Horizontal position of player's hit.
+     */
     playRound(x = 0, y = 0) {
         this.#switchPlayer(); // Need to make it at the beginning to preven clicking spam.
         this.#players[1].gameboard.recieveAttack(x, y);
