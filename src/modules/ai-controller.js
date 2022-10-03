@@ -19,8 +19,19 @@ export default class AiController {
         return move;
     }
 
-    placeShips(gameboard) {
-        // place 5 ships at random position
+    placeShip(ship, gameboard) {
+        const isRotated = Math.random() < 0.5;
+        const spot = this.findSpotToPlace(gameboard, ship.getLength(), isRotated);
+        gameboard.addShip(ship, spot.x, spot.y, isRotated);
     }
 
+    findSpotToPlace(gameboard, length, rotate) {
+        let x = Math.floor(Math.random() * 8);
+        let y = Math.floor(Math.random() * 8);
+        while (gameboard.isOccupied(x, y, length, rotate)) {
+            x = Math.floor(Math.random() * 8);
+            y = Math.floor(Math.random() * 8);            
+        }
+        return { x, y };
+    }
 }
