@@ -82,6 +82,8 @@ export default class Gameboard {
      * @returns {boolean}
      */
     isOccupied(x, y, length, rotate) {
+        if (x > Gameboard.#GRID_SIZE - (rotate ? 1 : length) || y > Gameboard.#GRID_SIZE - (rotate ? length : 1) || x < 0 || y < 0)
+            return true;
         let isOccupied = false;
         for (let i = 0; i < length; i++)
             if (this.getShipInCell(rotate ? x : x + i, rotate ? y + i : y))
