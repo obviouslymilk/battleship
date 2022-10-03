@@ -63,6 +63,6 @@ export default class Grid {
             
             return '🌊'
         }).join(''))
-        console.log(arrayToPrint);
+        console.table(arrayToPrint);
     }
 }
