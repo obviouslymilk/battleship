@@ -1,7 +1,9 @@
+import AiController from './ai-controller.js';
 import Gameboard from './gameboard.js'
 import Ship from './ship.js';
 
 export default class GameController {
+    #aiController = new AiController();
     #players = [
         {
             name: 'Player',
@@ -15,8 +17,15 @@ export default class GameController {
     #currentPlayer = this.#players[0];
 
     constructor() {
-        // add ships to player
-        // add ships to ai
+        // Player's fake ships
+        this.#players[0].gameboard.addShip(new Ship('Big', 5), 1, 0);
+        this.#players[0].gameboard.addShip(new Ship('Big', 4), 0, 2, true);
+        this.#players[0].gameboard.addShip(new Ship('Big', 3), 3, 4, false);
+        this.#players[0].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
+        this.#players[0].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
+        // AI's fake ships
+        this.#players[1].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
+        this.#players[1].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
     }
 
     /**
@@ -45,12 +54,15 @@ export default class GameController {
     }
 
     playRound(x = 0, y = 0) {
-        this.#switchPlayer(); // Need to make it at a beginning to preven clicking spam.
+        this.#switchPlayer(); // Need to make it at the beginning to preven clicking spam.
         this.#players[1].gameboard.recieveAttack(x, y);
-        this.#printPlayer(this.#players[0], true);
-        this.#printPlayer(this.#players[1], true);
-        // make ai move
-        // check win conditions
-        // switch player again
+
+        let aiMove = this.#aiController.getRandomMove();
+        this.#players[0].gameboard.recieveAttack(aiMove[0], aiMove[1]);
+
+        this.#printPlayer(this.#players[0], false);
+        this.#printPlayer(this.#players[1], false); // DONT FORGET TO HIDE LATER
+
+        this.#switchPlayer();
     }
 }
