@@ -24,8 +24,11 @@ export default class GameController {
         this.#players[0].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
         this.#players[0].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
         // AI's fake ships
-        this.#players[1].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
-        this.#players[1].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
+        this.#aiController.placeShip(new Ship('Carrier', 5), this.#players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Battleship', 4), this.#players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Cruiser', 3), this.#players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Submarine', 3), this.#players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Destroyer', 2), this.#players[1].gameboard);
     }
 
     /**
