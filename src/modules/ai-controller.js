@@ -19,4 +19,8 @@ export default class AiController {
         return move;
     }
 
+    placeShips(gameboard) {
+        // place 5 ships at random position
+    }
+
 }
