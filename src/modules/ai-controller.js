@@ -9,8 +9,8 @@ export default class AiController {
     }
 
     #generateMoves() {
-        for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < 8; j++)
+        for (let i = 0; i < Gameboard.GRID_SIZE; i++) {
+            for (let j = 0; j < Gameboard.GRID_SIZE; j++)
                 this.#moves.add([i, j]);
         }
     }
@@ -44,11 +44,11 @@ export default class AiController {
      * @returns {Object.<number>}
      */
     findSpotToPlace(gameboard, length, rotate) {
-        let x = Math.floor(Math.random() * 8);
-        let y = Math.floor(Math.random() * 8);
+        let x = Math.floor(Math.random() * Gameboard.GRID_SIZE);
+        let y = Math.floor(Math.random() * Gameboard.GRID_SIZE);
         while (gameboard.isOccupied(x, y, length, rotate)) {
-            x = Math.floor(Math.random() * 8);
-            y = Math.floor(Math.random() * 8);            
+            x = Math.floor(Math.random() * Gameboard.GRID_SIZE);
+            y = Math.floor(Math.random() * Gameboard.GRID_SIZE);            
         }
         return { x, y };
     }

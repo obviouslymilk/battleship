@@ -3,13 +3,13 @@ import Ship from './ship.js';
 
 export default class Gameboard {
 
-    static #GRID_SIZE = 8;
+    static GRID_SIZE = 8;
 
     #ships = [];
     #grid = [];
 
     constructor() {
-        this.#grid = new Grid(Gameboard.#GRID_SIZE, { ship: null, marked: false });
+        this.#grid = new Grid(Gameboard.GRID_SIZE, { ship: null, marked: false });
     }
 
     /**
@@ -22,7 +22,7 @@ export default class Gameboard {
     addShip(ship, x, y, rotate = false) {
         if (!(ship instanceof Ship))
             throw new Error(`addShip() expected instance of Ship, got ${ship.constructor.name}`);
-        if ( x > Gameboard.#GRID_SIZE - (rotate ? 1 : ship.getLength()) || y > Gameboard.#GRID_SIZE - (rotate ? ship.getLength() : 1) || x < 0 || y < 0)
+        if ( x > Gameboard.GRID_SIZE - (rotate ? 1 : ship.getLength()) || y > Gameboard.GRID_SIZE - (rotate ? ship.getLength() : 1) || x < 0 || y < 0)
             throw new Error('addShip() coordinates are out of bounds.');
         
         if (this.isOccupied(x, y, ship.getLength(), rotate))
@@ -82,7 +82,7 @@ export default class Gameboard {
      * @returns {boolean}
      */
     isOccupied(x, y, length, rotate) {
-        if (x > Gameboard.#GRID_SIZE - (rotate ? 1 : length) || y > Gameboard.#GRID_SIZE - (rotate ? length : 1) || x < 0 || y < 0)
+        if (x > Gameboard.GRID_SIZE - (rotate ? 1 : length) || y > Gameboard.GRID_SIZE - (rotate ? length : 1) || x < 0 || y < 0)
             return true;
         let isOccupied = false;
         for (let i = 0; i < length; i++)
