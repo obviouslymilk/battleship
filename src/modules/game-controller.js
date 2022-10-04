@@ -56,6 +56,19 @@ export default class GameController {
         return this.#currentPlayer;
     }
 
+    isWin() {
+        return this.players[0].gameboard.isAllSunk() || this.players[1].gameboard.isAllSunk();
+    }
+
+    getWinner() {
+        if (this.players[0].gameboard.isAllSunk())
+            return this.players[1];
+        if (this.players[1].gameboard.isAllSunk())
+            return this.players[0];
+        
+        return null;
+    }
+
     /**
      * Play full round of the game: player's hit and AI's hit.
      * @param {number} x Vertical position of player's hit.

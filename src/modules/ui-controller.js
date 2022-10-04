@@ -6,6 +6,8 @@ export default class UiController {
     #playerBoard = document.querySelector('#player');
     #ai = document.querySelector('#ai');
 
+    #active = false; // is game still on?
+
     #game = new GameController();
 
     constructor() {
@@ -13,6 +15,7 @@ export default class UiController {
         this.generateGrid(this.#ai);
         this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
         this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
+        this.#active = true;
     }
 
     cell(x, y) {
@@ -27,11 +30,20 @@ export default class UiController {
     }
 
     takeTurn(e) {
+        if (!this.#active)
+            return;
         if (e.target.parentNode.id === 'player' || e.target.classList.contains('marked'))
             return;
         this.#game.playRound(e.target.dataset.x, e.target.dataset.y);
         this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
         this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
+
+        // Check for win
+        if (this.#game.isWin()) {
+            const winner = this.#game.getWinner();
+            this.#active = false;
+            console.log(`${winner.name} is the winner!`);
+        }
     }
 
     generateGrid(boardElement) {
