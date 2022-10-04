@@ -4,7 +4,7 @@ import Ship from './ship.js';
 
 export default class GameController {
     #aiController = new AiController();
-    #players = [
+    players = [
         {
             name: 'Player',
             gameboard: new Gameboard()  
@@ -14,28 +14,28 @@ export default class GameController {
             gameboard: new Gameboard()
         }
     ]
-    #currentPlayer = this.#players[0];
+    #currentPlayer = this.players[0];
 
     constructor() {
         // Player's fake ships
-        this.#players[0].gameboard.addShip(new Ship('Big', 5), 1, 0);
-        this.#players[0].gameboard.addShip(new Ship('Big', 4), 0, 2, true);
-        this.#players[0].gameboard.addShip(new Ship('Big', 3), 3, 4, false);
-        this.#players[0].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
-        this.#players[0].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
+        this.players[0].gameboard.addShip(new Ship('Big', 5), 1, 0);
+        this.players[0].gameboard.addShip(new Ship('Big', 4), 0, 2, true);
+        this.players[0].gameboard.addShip(new Ship('Big', 3), 3, 4, false);
+        this.players[0].gameboard.addShip(new Ship('Big', 3), 3, 2, false);
+        this.players[0].gameboard.addShip(new Ship('Big', 2), 7, 6, true);
         // AI's fake ships
-        this.#aiController.placeShip(new Ship('Carrier', 5), this.#players[1].gameboard);
-        this.#aiController.placeShip(new Ship('Battleship', 4), this.#players[1].gameboard);
-        this.#aiController.placeShip(new Ship('Cruiser', 3), this.#players[1].gameboard);
-        this.#aiController.placeShip(new Ship('Submarine', 3), this.#players[1].gameboard);
-        this.#aiController.placeShip(new Ship('Destroyer', 2), this.#players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Carrier', 5), this.players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Battleship', 4), this.players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Cruiser', 3), this.players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Submarine', 3), this.players[1].gameboard);
+        this.#aiController.placeShip(new Ship('Destroyer', 2), this.players[1].gameboard);
     }
 
     /**
      * Switch players.
      */
     #switchPlayer() {
-        this.#currentPlayer = this.#currentPlayer === this.#players[0] ? this.#players[1] : this.#players[0];
+        this.#currentPlayer = this.#currentPlayer === this.players[0] ? this.players[1] : this.players[0];
     }
 
     /**
@@ -63,13 +63,13 @@ export default class GameController {
      */
     playRound(x = 0, y = 0) {
         this.#switchPlayer(); // Need to make it at the beginning to preven clicking spam.
-        this.#players[1].gameboard.recieveAttack(x, y);
+        this.players[1].gameboard.recieveAttack(x, y);
 
         let aiMove = this.#aiController.getRandomMove();
-        this.#players[0].gameboard.recieveAttack(aiMove[0], aiMove[1]);
+        this.players[0].gameboard.recieveAttack(aiMove[0], aiMove[1]);
 
-        this.#printPlayer(this.#players[0], false);
-        this.#printPlayer(this.#players[1], false); // DONT FORGET TO HIDE LATER
+        this.#printPlayer(this.players[0], false);
+        this.#printPlayer(this.players[1], false); // DONT FORGET TO HIDE LATER
 
         this.#switchPlayer();
     }

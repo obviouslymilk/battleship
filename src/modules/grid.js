@@ -8,7 +8,7 @@ export default class Grid {
         for (let i = 0; i < size; i++) {
             this.#array.push([]);
             for (let j = 0; j < size; j++)
-                this.#array[i].push({ship : null, marked : null});
+                this.#array[i].push({ship : null, marked : false});
         }
     }
 

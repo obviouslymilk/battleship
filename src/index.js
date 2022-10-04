@@ -1,4 +1,4 @@
 import GameController from "./modules/game-controller.js";
+import UiController from "./modules/ui-controller.js";
 
-const game = new GameController();
-window.game = game;
+new UiController();
