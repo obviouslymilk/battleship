@@ -27,7 +27,6 @@ export default class UiController {
 
     generateGrid(boardElement) {
         boardElement.innerHTML = '';
-
         for (let i = 0; i < Gameboard.GRID_SIZE; i++) {
             for (let j = 0; j < Gameboard.GRID_SIZE; j++) {
                 boardElement.appendChild(this.cell(i, j));
@@ -36,8 +35,6 @@ export default class UiController {
     }
 
     updateGrid(boardElement, gameboard, hide = false) {
-
-        
         for (let i = 0; i < Gameboard.GRID_SIZE; i++) {
             for (let j = 0; j < Gameboard.GRID_SIZE; j++) {
                 const cell = document.querySelector(`#${boardElement.id} > .cell[data-x="${i}"][data-y="${j}"]`);
