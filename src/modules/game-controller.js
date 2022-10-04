@@ -68,8 +68,8 @@ export default class GameController {
         let aiMove = this.#aiController.getRandomMove();
         this.players[0].gameboard.recieveAttack(aiMove[0], aiMove[1]);
 
-        this.#printPlayer(this.players[0], false);
-        this.#printPlayer(this.players[1], false); // DONT FORGET TO HIDE LATER
+        // this.#printPlayer(this.players[0], false);
+        // this.#printPlayer(this.players[1], false); // DONT FORGET TO HIDE LATER
 
         this.#switchPlayer();
     }

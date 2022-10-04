@@ -12,7 +12,7 @@ export default class UiController {
         this.generateGrid(this.#playerBoard);
         this.generateGrid(this.#ai);
         this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
-        this.updateGrid(this.#ai, this.#game.players[1].gameboard, false);
+        this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
     }
 
     cell(x, y) {
@@ -21,8 +21,17 @@ export default class UiController {
         cell.dataset.x = x;
         cell.dataset.y = y;
 
+        cell.addEventListener('click', e => this.takeTurn(e));
     
         return cell;       
+    }
+
+    takeTurn(e) {
+        if (e.target.parentNode.id === 'player' || e.target.classList.contains('marked'))
+            return;
+        this.#game.playRound(e.target.dataset.x, e.target.dataset.y);
+        this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
+        this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
     }
 
     generateGrid(boardElement) {
@@ -44,7 +53,7 @@ export default class UiController {
                     cell.classList.add('marked');
                 
                 const ship = gameboard.getShipInCell(i, j);
-                if (ship && !hide) {
+                if (ship && (!hide || isMarked)) {
                     cell.classList.add('ship');
 
                     if (ship.isSunk())

@@ -16,10 +16,10 @@
     background-color: #62bae3;
 }
 
-.marked::after {
-    content: 'yo';
-}
-
 .ship {
     background-color: gray;
+}
+
+.sunk {
+    background-color: red;
 }
