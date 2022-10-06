@@ -77,7 +77,6 @@ export default class UiController {
         for (let i = 0; i < Gameboard.GRID_SIZE; i++) {
             for (let j = 0; j < Gameboard.GRID_SIZE; j++) {
                 const cell = document.querySelector(`#${boardElement.id} > .cell[data-x="${i}"][data-y="${j}"]`);
-                // fetch marked
                 const isMarked = gameboard.isCellMarked(i, j);
                 if (isMarked)
                     cell.classList.add('marked');
@@ -94,11 +93,11 @@ export default class UiController {
     }
 
     connectEvents() {
+        document.addEventListener("contextmenu", e => e.preventDefault());
         document.addEventListener('keypress', e => this.dm.onKeyPressed(e));
         document.addEventListener('mousemove', e => this.dm.onMouseMove(e));
         document.addEventListener('mousedown', e => this.dm.onMouseClick(e));
         this.#trayElements.forEach(v => v.addEventListener('click', e => this.dm.onShipSelect(e)));
-
         this.#startButton.addEventListener('click', e => { this.start() });
     }
 

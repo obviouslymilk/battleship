@@ -4,6 +4,7 @@ import Ship from './ship.js';
 export default class DragManager {
     
     currentDraggable = null;
+    currentCell = null;
     rotate = true;
 
     #gameboard = null;
@@ -13,8 +14,11 @@ export default class DragManager {
     }
 
     onKeyPressed(e) {
-        if (e.code === 'KeyR')
-            this.rotate = !this.rotate;;
+        if (e.code === 'KeyR') {
+            this.rotate = !this.rotate;
+            this.#update();
+            this.#showPlace(this.currentCell);
+        }
     }
 
     onShipSelect(e) {
@@ -22,6 +26,11 @@ export default class DragManager {
     }
 
     onMouseClick(e) {
+        if (e.button === 2) {
+            this.currentDraggable = null;
+            this.#update();
+        }
+
         if (!this.currentDraggable) return;
         const cell = e.target.closest('.cell');
         if (!cell) return;
@@ -46,7 +55,8 @@ export default class DragManager {
         
         const cell = e.target.closest('.cell');
         if (!cell) return;
-        this.#showPlace(cell);
+        if (this.currentCell !== cell) this.currentCell = cell;
+        this.#showPlace(this.currentCell);
     }
 
     #canBePlaced(x, y, length) {
@@ -69,6 +79,7 @@ export default class DragManager {
     }
 
     #showPlace(cell) {
+        if (!this.currentDraggable) return;
         const length = this.currentDraggable.dataset.length;
         const x = parseInt(cell.dataset.x);
         const y = parseInt(cell.dataset.y);
@@ -94,5 +105,4 @@ export default class DragManager {
     #getCell(x, y) {
         return document.querySelector(`#prepare-board > .cell[data-x="${x}"][data-y="${y}"]`);
     }
-
 }
