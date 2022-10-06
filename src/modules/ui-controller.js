@@ -1,21 +1,36 @@
+import DragManager from './drag-manager.js';
 import GameController from './game-controller.js';
 import Gameboard from './gameboard.js';
 
 export default class UiController {
-    
+    #prepareScreen = document.querySelector('#prepare-screen');
+    #prepareBoard = document.querySelector('#prepare-board');
+    #trayElements = document.querySelectorAll('.tray-element');
+
+    #gameElement = document.querySelector('#game');
     #playerBoard = document.querySelector('#player');
-    #ai = document.querySelector('#ai');
+    #aiBoard = document.querySelector('#ai');
 
     #active = false; // is game still on?
 
     #game = new GameController();
+    #dm = new DragManager(this.#game.players[0].gameboard);
 
     constructor() {
         this.generateGrid(this.#playerBoard);
-        this.generateGrid(this.#ai);
+        this.generateGrid(this.#aiBoard);
+        this.generateGrid(this.#prepareBoard);
+
+        this.connectEvents();
+        //this.start();
+    }
+
+    start() {
+        this.#prepareScreen.style.display = 'none';
         this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
-        this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
+        this.updateGrid(this.#aiBoard, this.#game.players[1].gameboard, true);
         this.#active = true;
+        this.#gameElement.style.display = 'block';
     }
 
     cell(x, y) {
@@ -36,7 +51,7 @@ export default class UiController {
             return;
         this.#game.playRound(e.target.dataset.x, e.target.dataset.y);
         this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
-        this.updateGrid(this.#ai, this.#game.players[1].gameboard, true);
+        this.updateGrid(this.#aiBoard, this.#game.players[1].gameboard, true);
 
         // Check for win
         if (this.#game.isWin()) {
@@ -73,6 +88,12 @@ export default class UiController {
                 }
             }
         }
+    }
+
+    connectEvents() {
+        document.addEventListener('mousemove', e => this.#dm.onMouseMove(e));
+        document.addEventListener('mousedown', e => this.#dm.onMouseClick(e));
+        this.#trayElements.forEach(v => v.addEventListener('click', e => this.#dm.onShipSelect(e)));
     }
 
 }
