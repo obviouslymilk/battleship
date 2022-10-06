@@ -29,8 +29,12 @@
     background-color: #62bae3;
 }
 
-.selected {
+.can-place {
     background-color: lightgreen;
+}
+
+.cant-place {
+    background-color: lightcoral;
 }
 
 .ship {

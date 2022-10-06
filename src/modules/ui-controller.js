@@ -5,7 +5,9 @@ import Gameboard from './gameboard.js';
 export default class UiController {
     #prepareScreen = document.querySelector('#prepare-screen');
     #prepareBoard = document.querySelector('#prepare-board');
+    #tray = document.querySelector('#ships-tray');
     #trayElements = document.querySelectorAll('.tray-element');
+    #startButton = document.querySelector('#start-game');
 
     #gameElement = document.querySelector('#game');
     #playerBoard = document.querySelector('#player');
@@ -13,8 +15,8 @@ export default class UiController {
 
     #active = false; // is game still on?
 
-    #game = new GameController();
-    #dm = new DragManager(this.#game.players[0].gameboard);
+    game = new GameController();
+    dm = new DragManager(this.game.players[0].gameboard);
 
     constructor() {
         this.generateGrid(this.#playerBoard);
@@ -26,9 +28,10 @@ export default class UiController {
     }
 
     start() {
+        if (this.#tray.children.length !== 0) return;
         this.#prepareScreen.style.display = 'none';
-        this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
-        this.updateGrid(this.#aiBoard, this.#game.players[1].gameboard, true);
+        this.updateGrid(this.#playerBoard, this.game.players[0].gameboard, false);
+        this.updateGrid(this.#aiBoard, this.game.players[1].gameboard, false);
         this.#active = true;
         this.#gameElement.style.display = 'block';
     }
@@ -49,13 +52,13 @@ export default class UiController {
             return;
         if (e.target.parentNode.id === 'player' || e.target.classList.contains('marked'))
             return;
-        this.#game.playRound(e.target.dataset.x, e.target.dataset.y);
-        this.updateGrid(this.#playerBoard, this.#game.players[0].gameboard, false);
-        this.updateGrid(this.#aiBoard, this.#game.players[1].gameboard, true);
+        this.game.playRound(e.target.dataset.x, e.target.dataset.y);
+        this.updateGrid(this.#playerBoard, this.game.players[0].gameboard, false);
+        this.updateGrid(this.#aiBoard, this.game.players[1].gameboard, true);
 
         // Check for win
-        if (this.#game.isWin()) {
-            const winner = this.#game.getWinner();
+        if (this.game.isWin()) {
+            const winner = this.game.getWinner();
             this.#active = false;
             console.log(`${winner.name} is the winner!`);
         }
@@ -91,9 +94,12 @@ export default class UiController {
     }
 
     connectEvents() {
-        document.addEventListener('mousemove', e => this.#dm.onMouseMove(e));
-        document.addEventListener('mousedown', e => this.#dm.onMouseClick(e));
-        this.#trayElements.forEach(v => v.addEventListener('click', e => this.#dm.onShipSelect(e)));
+        document.addEventListener('keypress', e => this.dm.onKeyPressed(e));
+        document.addEventListener('mousemove', e => this.dm.onMouseMove(e));
+        document.addEventListener('mousedown', e => this.dm.onMouseClick(e));
+        this.#trayElements.forEach(v => v.addEventListener('click', e => this.dm.onShipSelect(e)));
+
+        this.#startButton.addEventListener('click', e => { this.start() });
     }
 
 }
