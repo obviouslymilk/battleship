@@ -1,46 +1,159 @@
+@keyframes animatedBackground {
+    from {
+      background-size: 12px;
+    }
+    to {
+      background-size: 32px;
+    }
+  }
+
+body {
+    background-image: url(./static/images/bg/bg.png);
+    background-size: cover;
+    border: 12px solid #D6CFB0;
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#title {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    display: block;
+    padding: 3rem;
+}
+
+#help {
+    text-align: center;
+    cursor: default;
+    line-height: 2rem;
+    font-size: 18px;
+    color: #f3f3f3;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-shadow: 0px 0px 3px black;
+    font-weight: 600;
+}
+
+#help > span {
+    background-color: #fce6b0;
+    text-shadow: none;
+    font-weight: 600;
+    color: #c86d07;
+    border: 2px solid #392819;
+    border-bottom: 4px solid #392819;
+    padding: 2px 4px 2px 4px;
+    border-radius: 5px;
+}
+
+#start-game {
+    width: 160px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition-property: transform;
+    transition: 0.1s;
+}
+
+#start-game:hover {
+    transform: scale(1.05,1.05);
+}
+
 #game {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+}
+
+#prepare-screen {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
 }
 
 #ships-tray {
-    background-color: lightblue;
-    height: 48px;
+    height: auto;
 }
 
 .tray-element {
-    height: 100%;
+    height: 48px;
+}
+
+.gameboard-outer {
+    border: 15px solid #D6CFB0;
+    border-radius: 3px;
+    background-color: #3D8899;
+    width: 320px;
+    height: 320px;
+    padding: 5px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+
+.gameboard-outer > h1 {
+    font-size: 40px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #ffb158;
+    text-shadow: rgb(57, 40, 25) 3px 0px 0px, rgb(57, 40, 25) 2.83487px 0.981584px 0px, rgb(57, 40, 25) 2.35766px 1.85511px 0px, rgb(57, 40, 25) 1.62091px 2.52441px 0px, rgb(57, 40, 25) 0.705713px 2.91581px 0px, rgb(57, 40, 25) -0.287171px 2.98622px 0px, rgb(57, 40, 25) -1.24844px 2.72789px 0px, rgb(57, 40, 25) -2.07227px 2.16926px 0px, rgb(57, 40, 25) -2.66798px 1.37182px 0px, rgb(57, 40, 25) -2.96998px 0.42336px 0px, rgb(57, 40, 25) -2.94502px -0.571704px 0px, rgb(57, 40, 25) -2.59586px -1.50383px 0px, rgb(57, 40, 25) -1.96093px -2.27041px 0px, rgb(57, 40, 25) -1.11013px -2.78704px 0px, rgb(57, 40, 25) -0.137119px -2.99686px 0px, rgb(57, 40, 25) 0.850987px -2.87677px 0px, rgb(57, 40, 25) 1.74541px -2.43999px 0px, rgb(57, 40, 25) 2.44769px -1.73459px 0px, rgb(57, 40, 25) 2.88051px -0.838247px 0px;
 }
 
 .gameboard {
     display: grid;
     grid-template-rows: repeat(8, 1fr);
     grid-template-columns: repeat(8, 1fr);
-    width: 320px;
-    gap: 1px;
-    height: 320px;
-    margin-bottom: 32px;
+    width: 100%;
+    height: 100%;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='46' height='46' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Crect width='100%25' height='100%25' fill='rgba(73, 167, 183,1)'/%3E%3Cpath d='M0 40a 7.5-7.5 0 0 0 7.5-7.5a 12.5-12.5 0 0 1 12.5-12.5a 7.5-7.5 0 0 0 7.5-7.5a 12.5-12.5 0 0 1 12.5-12.5v5a-7.5 7.5 0 0 0-7.5 7.5a-12.5 12.5 0 0 1-12.5 12.5a-7.5 7.5 0 0 0-7.5 7.5a-12.5 12.5 0 0 1-12.5 12.5zM0 0a 7.5-7.5 0 0 0 7.5-7.5h5a-12.5 12.5 0 0 1-12.5 12.5z' fill='rgba(66, 151, 165,1)'/%3E%3Cpath d='M0 0a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5v1a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5zM0 40a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5v1a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5z ' fill='rgba(66, 151, 165,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
 }
 
 .cell {
-    border: 1px solid black;
+    border: 1px dashed #3d88996b;    
 }
 
 .marked {
-    background-color: #62bae3;
+    background-image: url(./static/images/x.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: animatedBackground 0.05s ease-out;
+}
+
+.ship.marked {
+    background-image: url(./static/images/x.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .can-place {
-    background-color: lightgreen;
+    background: rgba(144, 238, 144, 0.514);
 }
 
 .cant-place {
-    background-color: lightcoral;
+    background: rgba(240, 128, 128, 0.822)
 }
 
 .ship {
-    background-color: gray;
+    background: #D6CFB0;
+    border: 3px solid #514843;
+    border-bottom: 5px solid #514843;
+    border-radius: 5px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.363);
 }
 
-.sunk {
-    background-color: red;
+.sunk.marked.sunk {
+    background: #b5412a;
 }

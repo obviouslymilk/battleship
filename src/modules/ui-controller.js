@@ -19,6 +19,7 @@ export default class UiController {
     dm = new DragManager(this.game.players[0].gameboard);
 
     constructor() {
+        this.#gameElement.style.display = 'none';
         this.generateGrid(this.#playerBoard);
         this.generateGrid(this.#aiBoard);
         this.generateGrid(this.#prepareBoard);
@@ -31,9 +32,9 @@ export default class UiController {
         if (this.#tray.children.length !== 0) return;
         this.#prepareScreen.style.display = 'none';
         this.updateGrid(this.#playerBoard, this.game.players[0].gameboard, false);
-        this.updateGrid(this.#aiBoard, this.game.players[1].gameboard, false);
+        this.updateGrid(this.#aiBoard, this.game.players[1].gameboard, true);
         this.#active = true;
-        this.#gameElement.style.display = 'block';
+        this.#gameElement.style.display = 'flex';
     }
 
     cell(x, y) {
@@ -91,7 +92,7 @@ export default class UiController {
             }
         }
     }
-
+    
     connectEvents() {
         document.addEventListener("contextmenu", e => e.preventDefault());
         document.addEventListener('keypress', e => this.dm.onKeyPressed(e));
