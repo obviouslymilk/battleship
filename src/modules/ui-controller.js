@@ -11,6 +11,8 @@ export default class UiController {
 
     #blur = document.querySelector('#blur');
     #victoryScreen = document.querySelector('#victory-screen');
+    #victoryTitle = document.querySelector('#victory-title');
+    #victoryArt = document.querySelector('#victory-art');
 
     #gameElement = document.querySelector('#game');
     #playerBoard = document.querySelector('#player');
@@ -24,7 +26,7 @@ export default class UiController {
     constructor() {
         this.#gameElement.style.display = 'none';
         this.#blur.style.display = 'none';
-        //this.#victoryScreen.style.display = 'none';
+        this.#victoryScreen.style.display = 'none';
         this.generateGrid(this.#playerBoard);
         this.generateGrid(this.#aiBoard);
         this.generateGrid(this.#prepareBoard);
@@ -70,7 +72,11 @@ export default class UiController {
     win() {
         const winner = this.game.getWinner();
         this.#active = false;
-        console.log(`${winner.name} is the winner!`);
+        this.#blur.style.display = 'block';
+        this.#victoryScreen.style.display = 'block';
+
+        this.#victoryTitle.textContent = winner.name + ' wins!';
+        this.#victoryArt.src = winner.name === 'Player' ? "./static/images/victory art.svg" : "./static/images/lose art.svg"
     }
 
     generateGrid(boardElement) {

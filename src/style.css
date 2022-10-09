@@ -122,15 +122,19 @@ h1 {
     background-color: #49a7b7;
 }
 
-#victory-screen > div {
-    margin-top: auto;
+#victory-screen > .help {
+    margin-top: 1rem;
     text-align: center;
-    color: white;
 }
 
 #victory-title {
     margin: 0;
     margin-bottom: 0.5rem;
+}
+
+#victory-art {
+    border: 4px #3D8899 solid;
+    border-radius: 2px;
 }
 
 .tray-element {
