@@ -9,6 +9,9 @@ export default class UiController {
     #trayElements = document.querySelectorAll('.tray-element');
     #startButton = document.querySelector('#start-game');
 
+    #blur = document.querySelector('#blur');
+    #victoryScreen = document.querySelector('#victory-screen');
+
     #gameElement = document.querySelector('#game');
     #playerBoard = document.querySelector('#player');
     #aiBoard = document.querySelector('#ai');
@@ -20,12 +23,13 @@ export default class UiController {
 
     constructor() {
         this.#gameElement.style.display = 'none';
+        this.#blur.style.display = 'none';
+        //this.#victoryScreen.style.display = 'none';
         this.generateGrid(this.#playerBoard);
         this.generateGrid(this.#aiBoard);
         this.generateGrid(this.#prepareBoard);
 
         this.connectEvents();
-        //this.start();
     }
 
     start() {
@@ -59,10 +63,14 @@ export default class UiController {
 
         // Check for win
         if (this.game.isWin()) {
-            const winner = this.game.getWinner();
-            this.#active = false;
-            console.log(`${winner.name} is the winner!`);
+            this.win();
         }
+    }
+
+    win() {
+        const winner = this.game.getWinner();
+        this.#active = false;
+        console.log(`${winner.name} is the winner!`);
     }
 
     generateGrid(boardElement) {

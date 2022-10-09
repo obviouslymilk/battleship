@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Battleship</title>
     <script type="module" src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,12 +21,12 @@
             <img class="tray-element" data-length="3" data-name="Submarine" src='https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-vector-ship-icon-png-image_515548.jpg'>
             <img class="tray-element" data-length="2" data-name="Destroyer" src='https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-vector-ship-icon-png-image_515548.jpg'>
         </div>
-        <div id="help">
-            Select a ship and place it on a board with <span>LMB</span>
+        <div class="help">
+            Select a ship and place it on a board with <span class="key-help">LMB</span>
             <br>
-            Press <span>RMB</span> to cancel ship placement
+            Press <span class="key-help">RMB</span> to cancel ship placement
             <br>
-            Press <span>R</span> on your keyboard to rotate a ship.
+            Press <span class="key-help">R</span> on your keyboard to rotate a ship.
         </div>
         <button id="start-game">
             <img src="./static/images/startbutton.svg">
@@ -41,7 +41,14 @@
             <div id="ai" class="gameboard"></div>
             <h1>AI's Board</h1>
         </div>
-        
+    </div>
+    <div id="blur"></div>
+    <div id="victory-screen">
+        <h1 id="victory-title">Player wins!</h1>
+        <img src="">
+        <div class="help">
+            <span class="key-help">Restart</span> page to play again.
+        </div>     
     </div>
 </body>
 </html>

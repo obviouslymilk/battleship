@@ -23,6 +23,17 @@ html {
     margin: 0;
 }
 
+h1 {
+    margin: 0;
+    margin-top: 1.2rem;
+    padding: 0;
+    font-size: 40px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #ffb158;
+    text-shadow: rgb(57, 40, 25) 3px 0px 0px, rgb(57, 40, 25) 2.83487px 0.981584px 0px, rgb(57, 40, 25) 2.35766px 1.85511px 0px, rgb(57, 40, 25) 1.62091px 2.52441px 0px, rgb(57, 40, 25) 0.705713px 2.91581px 0px, rgb(57, 40, 25) -0.287171px 2.98622px 0px, rgb(57, 40, 25) -1.24844px 2.72789px 0px, rgb(57, 40, 25) -2.07227px 2.16926px 0px, rgb(57, 40, 25) -2.66798px 1.37182px 0px, rgb(57, 40, 25) -2.96998px 0.42336px 0px, rgb(57, 40, 25) -2.94502px -0.571704px 0px, rgb(57, 40, 25) -2.59586px -1.50383px 0px, rgb(57, 40, 25) -1.96093px -2.27041px 0px, rgb(57, 40, 25) -1.11013px -2.78704px 0px, rgb(57, 40, 25) -0.137119px -2.99686px 0px, rgb(57, 40, 25) 0.850987px -2.87677px 0px, rgb(57, 40, 25) 1.74541px -2.43999px 0px, rgb(57, 40, 25) 2.44769px -1.73459px 0px, rgb(57, 40, 25) 2.88051px -0.838247px 0px;
+}
+
 #title {
     margin-left: auto;
     margin-right: auto;
@@ -31,7 +42,7 @@ html {
     padding: 3rem;
 }
 
-#help {
+.help {
     text-align: center;
     cursor: default;
     line-height: 2rem;
@@ -42,7 +53,7 @@ html {
     font-weight: 600;
 }
 
-#help > span {
+.key-help {
     background-color: #fce6b0;
     text-shadow: none;
     font-weight: 600;
@@ -86,6 +97,42 @@ html {
     height: auto;
 }
 
+#blur {
+    position: absolute;
+    backdrop-filter: saturate(80%) blur(2px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+#victory-screen {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    width: 400px;
+    height: fit-content;
+    padding: 10px;
+    transform: translate(-50%,-50%);
+    border: 15px solid #D6CFB0;
+    border-radius: 3px;   
+    background-color: #49a7b7;
+}
+
+#victory-screen > div {
+    margin-top: auto;
+    text-align: center;
+    color: white;
+}
+
+#victory-title {
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
 .tray-element {
     height: 48px;
 }
@@ -98,14 +145,6 @@ html {
     height: 320px;
     padding: 5px;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
-}
-
-.gameboard-outer > h1 {
-    font-size: 40px;
-    text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #ffb158;
-    text-shadow: rgb(57, 40, 25) 3px 0px 0px, rgb(57, 40, 25) 2.83487px 0.981584px 0px, rgb(57, 40, 25) 2.35766px 1.85511px 0px, rgb(57, 40, 25) 1.62091px 2.52441px 0px, rgb(57, 40, 25) 0.705713px 2.91581px 0px, rgb(57, 40, 25) -0.287171px 2.98622px 0px, rgb(57, 40, 25) -1.24844px 2.72789px 0px, rgb(57, 40, 25) -2.07227px 2.16926px 0px, rgb(57, 40, 25) -2.66798px 1.37182px 0px, rgb(57, 40, 25) -2.96998px 0.42336px 0px, rgb(57, 40, 25) -2.94502px -0.571704px 0px, rgb(57, 40, 25) -2.59586px -1.50383px 0px, rgb(57, 40, 25) -1.96093px -2.27041px 0px, rgb(57, 40, 25) -1.11013px -2.78704px 0px, rgb(57, 40, 25) -0.137119px -2.99686px 0px, rgb(57, 40, 25) 0.850987px -2.87677px 0px, rgb(57, 40, 25) 1.74541px -2.43999px 0px, rgb(57, 40, 25) 2.44769px -1.73459px 0px, rgb(57, 40, 25) 2.88051px -0.838247px 0px;
 }
 
 .gameboard {
