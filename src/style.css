@@ -5,7 +5,7 @@
     to {
       background-size: 32px;
     }
-  }
+}
 
 body {
     background-image: url(./static/images/bg/bg.png);
@@ -21,6 +21,18 @@ html {
     height: 100%;
     padding: 0;
     margin: 0;
+}
+
+a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2rem;
+}
+
+a > img {
+    width: 40px;
+    opacity: 30%;
 }
 
 h1 {
