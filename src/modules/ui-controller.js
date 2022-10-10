@@ -76,7 +76,7 @@ export default class UiController {
         this.#victoryScreen.style.display = 'block';
 
         this.#victoryTitle.textContent = winner.name + ' wins!';
-        this.#victoryArt.src = winner.name === 'Player' ? "./static/images/victory art.svg" : "./static/images/lose art.svg"
+        this.#victoryArt.src = winner.name === 'Player' ? "../src/static/images/victoryart.svg" : "./src/static/images/loseart.svg"
     }
 
     generateGrid(boardElement) {
