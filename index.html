@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
-    <script type="module" src="index.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <script type="module" src="./src/index.js" defer></script>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-    <img id="title" src="./static/images/title.png">
+    <img id="title" src="./src/static/images/title.png">
     <div id="prepare-screen">
         <div class="gameboard-outer">
             <div id="prepare-board" class="gameboard"></div>
         </div>
         <div id="ships-tray">
-            <img class="tray-element" data-length="5" data-name="Carrier" src='./static/images/ships/5.png'>
-            <img class="tray-element" data-length="4" data-name="Battleship" src='./static/images/ships/4.png'>
-            <img class="tray-element" data-length="3" data-name="Cruiser" src='./static/images/ships/3.png'>
-            <img class="tray-element" data-length="3" data-name="Submarine" src='./static/images/ships/3+.png'>
-            <img class="tray-element" data-length="2" data-name="Destroyer" src='./static/images/ships/2.png'>
+            <img class="tray-element" data-length="5" data-name="Carrier" src='./src/static/images/ships/5.png'>
+            <img class="tray-element" data-length="4" data-name="Battleship" src='./src/static/images/ships/4.png'>
+            <img class="tray-element" data-length="3" data-name="Cruiser" src='./src/static/images/ships/3.png'>
+            <img class="tray-element" data-length="3" data-name="Submarine" src='./src/static/images/ships/3+.png'>
+            <img class="tray-element" data-length="2" data-name="Destroyer" src='./src/static/images/ships/2.png'>
         </div>
         <div class="help">
             Select a ship and place it on a board with <span class="key-help">LMB</span>
@@ -29,7 +29,7 @@
             Press <span class="key-help">R</span> on your keyboard to rotate a ship.
         </div>
         <button id="start-game">
-            <img src="./static/images/startbutton.svg">
+            <img src="./src/static/images/startbutton.svg">
         </button>
     </div>
     <div id="game">
